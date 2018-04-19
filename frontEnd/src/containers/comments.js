@@ -65,7 +65,7 @@ class Comments extends Component {
                       {" "}
                       <strong>
                         {comment.voteScore}
-                      </strong> {comment.voteScore === 1 ? " vote" : " votes"}
+                      </strong> {comment.voteScore === 1 || comment.voteScore === 0 ? " vote" : " votes"}
                     </span>
                     <span>
                       {" "}

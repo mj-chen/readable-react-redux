@@ -137,7 +137,7 @@ class Post extends Component {
                   <span>
                     {" "}
                     <strong>{voteScore}</strong>{" "}
-                    {voteScore === 1 ? " vote" : " votes"}
+                    {voteScore === 1 || voteScroe === 0? " vote" : " votes"}
                   </span>
                   <span>
                     {" "}
