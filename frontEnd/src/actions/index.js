@@ -2,15 +2,25 @@ import * as api from '../utils/api'
 import * as types from '../constants/ActionTypes'
 
 
-export const receivePosts = (type, posts)=> ({
-  type,
+export const receivePosts = posts=> ({
+  type:types.RECEIVE_ALL_POSTS,
   posts
-});
+})
+
+export const receiveFilteredPosts =posts=>({
+    type:types.RECEIVE_FILTERED_POSTS,
+    posts
+})
+
+export const addPost = post=>({
+  type:types.ADD_POST,
+  post
+})
 
 export const receiveCats = cats => ({
     type: types.RECEIVE_CATS,
     cats
-});
+})
 
 export const receivePost = post => ({
     type:types.RECEIVE_POST,
@@ -35,6 +45,16 @@ export const addComment=(comment)=>({
 export const deleteComment=(comment)=>({
     type:types.DELETE_COMMENT,
     comment
+})
+
+export const updatePost=post=>({
+    type:types.UPDATE_POST,
+    post
+})
+
+export const deletPost=post=>({
+    type:types.DELETE_POST,
+    post
 })
 
 export const likePost=(id)=>({
@@ -65,24 +85,22 @@ export const sortPosts = (lable,callback)=>({
 
 export const fetchPosts = (type) => dispatch => {
     api.fetchPosts()
-    .then(posts => dispatch(receivePosts(type, posts)));
-};
+    .then(posts => dispatch(receivePosts(posts)));
+}
 
 export const fetchCats = () => dispatch =>{
     api.fetchCats()
     .then(cats=>dispatch(receiveCats(cats)))
 }
 
-export const addNewPost = (cat, post)=>(dispatch)=>{
-    const type = `RECEIVE_${cat}_POSTS`.toUpperCase();
+export const addNewPost = (post)=>(dispatch)=>{
     api.addNewPost(post)
-    .then(post => dispatch(fetchFilteredPosts(type, cat)))
-    .then(() => dispatch(fetchPosts(types.RECEIVE_ALL_POSTS)));
+    .then(post => dispatch(addPost(post)))
 }
    
-export const fetchFilteredPosts=(type, cat)=>(dispatch)=>{
+export const fetchFilteredPosts=(cat)=>(dispatch)=>{
     api.fetchFilteredPosts(cat)
-    .then(posts=>dispatch(receivePosts(type, posts)))
+    .then(posts=>dispatch(receiveFilteredPosts(posts)))
 }
 
 export const fetchPost = (id)=>(dispatch)=>{
@@ -97,17 +115,17 @@ export const fetchComments = (id) =>(dispatch)=>{
 
 export const votePost = (id,option)=>(dispatch)=>{
     api.votePost(id,option)
-    .then(post=>dispatch(receivePost(post)))
+    .then(post=>dispatch(updatePost(post)))
 }
 
-export const updatePost = (id,post)=>(dispatch)=>{
-    api.updatePost(id, post)
-    .then(post => dispatch(receivePost(post)));
+export const editPost = (id,post)=>(dispatch)=>{
+    api.editPost(id, post)
+    .then(post => dispatch(updatePost(post)))
 }
 
-export const deletePost=(id)=>(dispatch)=>{
-    api.deletePost(id)
-    .then(post=>dispatch(fetchPost(post.id)))
+export const removePost=(id)=>(dispatch)=>{
+    api.removePost(id)
+    .then(post=>dispatch(deletPost(post)))
 }
 
 export const addNewComment=(comment)=>(dispatch)=>{

@@ -5,8 +5,8 @@ import Comments from './comments'
 import Thumbs from '../components/thumb'
 import {
   votePost,
-  updatePost,
-  deletePost,
+  editPost,
+  removePost,
   addNewComment,
   likePost,
   dislikePost,
@@ -36,7 +36,7 @@ class Post extends Component {
 
   toggleDelete = id => {
     const { dispatch } = this.props
-    dispatch(deletePost(id))
+    dispatch(removePost(id))
   }
 
   openModal = () => {
@@ -52,7 +52,7 @@ class Post extends Component {
   }
 
   updatePost = (id, updatedPost) => {
-    this.props.dispatch(updatePost(id, updatedPost))
+    this.props.dispatch(editPost(id, updatedPost))
     this.setState(state => {
       return { editingPost: !state.editingPost }
     })
@@ -137,7 +137,7 @@ class Post extends Component {
                   <span>
                     {" "}
                     <strong>{voteScore}</strong>{" "}
-                    {voteScore === 1 || voteScore === 0? " vote" : " votes"}
+                    {voteScore === 1 || voteScore === -1? " vote" : " votes"}
                   </span>
                   <span>
                     {" "}

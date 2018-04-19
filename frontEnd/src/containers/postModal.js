@@ -53,7 +53,7 @@ class PostModal extends Component {
       id = this.makeId(),
       timestamp = Date.now()
     const newpost = this.formPost({ author, title, body, category, id, timestamp })
-    dispatch(addNewPost(category, newpost))
+    dispatch(addNewPost(newpost))
     this.setState({
       author: "",
       title: "",

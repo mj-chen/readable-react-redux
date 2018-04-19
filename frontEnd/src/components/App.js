@@ -1,12 +1,13 @@
 import React, { Component } from "react"
 import "../App.css"
 import Navigation from '../containers/navigation'
-import EditToggle from './editToggle'
+import AddPost from './addPost'
 import PostModal from '../containers/postModal'
 import Posts from '../containers/posts'
 import Post from '../containers/post'
 
 class App extends Component {
+
   state = {
     editing: false
   }
@@ -23,13 +24,10 @@ class App extends Component {
     return (
       <div>
         <Navigation/>
-        <EditToggle onOpen={this.onOpen}/> 
-        <Posts/>
-        <Post/>
-        <PostModal 
-          editing={this.state.editing}
-          onClose={this.onClose}
-        />
+        <AddPost onOpen={this.onOpen} />
+        <Posts />
+        <Post />
+        <PostModal editing={this.state.editing} onClose={this.onClose} />
       </div>
     )
   }

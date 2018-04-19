@@ -1,25 +1,17 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import {Route} from 'react-router-dom'
-import {RECEIVE_ALL_POSTS} from '../constants/ActionTypes'
-import { sortPosts, fetchPosts } from "../actions"
+import { Route } from 'react-router-dom'
+import { sortPosts } from "../actions"
 import Sort from "../components/sort"
-import PostsList from '../components/postsList'
+import PostsList from './postsList'
 import PropTypes from "prop-types"
 
 class Posts extends Component {
 
-  componentDidMount() {
-    this.props.dispatch(fetchPosts(RECEIVE_ALL_POSTS))
-  }
-
   sortpostsbyvote = (lable) => {
-    const { dispatch } = this.props;
-    if(lable===''){
-      lable='home'
-    }
+    const { dispatch } = this.props
     const callback = (a, b) => {
-      let diff = a.voteScore - b.voteScore;
+      let diff = a.voteScore - b.voteScore
       if (diff < 0) {
         return 1
       }
@@ -33,12 +25,9 @@ class Posts extends Component {
   }
 
   sortpostsbytime = (lable) => {
-    const { dispatch } = this.props;
-    if(lable===''){
-      lable='home'
-    }
+    const { dispatch } = this.props
     const callback = (a, b) => {
-      let diff = a.timestamp - b.timestamp;
+      let diff = a.timestamp - b.timestamp
       if (diff > 0) {
         return -1
       }
@@ -52,20 +41,15 @@ class Posts extends Component {
   }
 
   render() {
-    const { posts, cats, dispatch } = this.props
+    const { cats } = this.props
     return <div>
-        <Route  render={({ location }) => <Sort lable={location.pathname.slice(1)} sortpostsbyvote={this.sortpostsbyvote} sortpostsbytime={this.sortpostsbytime} posts={posts} />} />
-        <Route path='/' exact render={() => <PostsList posts={posts["home"]} dispatch={dispatch} />} />
+        <Route render={({ location }) => <Sort lable={location.pathname.slice(1)} sortpostsbyvote={this.sortpostsbyvote} sortpostsbytime={this.sortpostsbytime}/>} />
+        <Route path="/" exact  render={({location}) => <PostsList lable={location.pathname.slice(1)} />} />
         {cats.map(cat => (
           <Route
             path={`/${cat.path}`}
             exact
-            render={() => (
-              <PostsList
-                posts={posts[`${cat.path}`]}
-                dispatch={dispatch}
-              />
-            )}
+            render={({location}) => <PostsList lable={location.pathname.slice(1)} />}
             key={cat.name}
           />
         ))}
@@ -74,60 +58,6 @@ class Posts extends Component {
 }
 
 Posts.propTypes = {
-  posts: PropTypes.shape({
-    home: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        timestamp: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        body: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        category: PropTypes.string.isRequired,
-        voteScore: PropTypes.number.isRequired,
-        deleted: PropTypes.bool.isRequired,
-        commentCount: PropTypes.number.isRequired
-      })
-    ),
-    react: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        timestamp: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        body: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        category: PropTypes.string.isRequired,
-        voteScore: PropTypes.number.isRequired,
-        deleted: PropTypes.bool.isRequired,
-        commentCount: PropTypes.number.isRequired
-      })
-    ),
-    redux: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        timestamp: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        body: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        category: PropTypes.string.isRequired,
-        voteScore: PropTypes.number.isRequired,
-        deleted: PropTypes.bool.isRequired,
-        commentCount: PropTypes.number.isRequired
-      })
-    ),
-    udacity: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        timestamp: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        body: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        category: PropTypes.string.isRequired,
-        voteScore: PropTypes.number.isRequired,
-        deleted: PropTypes.bool.isRequired,
-        commentCount: PropTypes.number.isRequired
-      })
-    )
-  }),
   cats:PropTypes.arrayOf(
     PropTypes.shape({
       name:PropTypes.string,
@@ -137,7 +67,6 @@ Posts.propTypes = {
 }
 
 const mapStateToProps=(state)=>({
-    posts:state.posts,
     cats:state.cats
 })
 

@@ -14,12 +14,10 @@ class Navigation extends Component{
     
     filterPosts=(catName)=>{
         const {dispatch} = this.props
-        const uppercasename = catName.toUpperCase()
-        const type = `RECEIVE_${uppercasename}_POSTS`
-        if(catName === 'all'){
-            dispatch(fetchPosts(type))
+        if (catName === RECEIVE_ALL_POSTS){
+          dispatch(fetchPosts)
         }else{
-             dispatch(fetchFilteredPosts(type,catName))
+          dispatch(fetchFilteredPosts(catName))
         }
     }
 
@@ -28,8 +26,8 @@ class Navigation extends Component{
         return <div className="nav">
             <ul className="cat">
               <NavLink 
-                exact
                 to="/" 
+                exact
                 activeClassName="selected" 
                 className="category" 
                 onClick={()=>dispatch(fetchPosts(RECEIVE_ALL_POSTS))}
@@ -38,9 +36,9 @@ class Navigation extends Component{
               </NavLink>
               {cats.map(cat => (
                 <NavLink
-                  exact
                   key={cat.name}
                   to={`/${cat.path}`}
+                  exact
                   activeClassName="selected"
                   className="category"
                   onClick={() => this.filterPosts(cat.name)}

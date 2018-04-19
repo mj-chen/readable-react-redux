@@ -1,6 +1,6 @@
 
 const url = "http://localhost:3001";
-const myHeader = new Headers({ Authorization: "udacity" });
+const myHeader = new Headers({ Authorization: "udacity" })
 
 export const  fetchPosts= ()=>{
     return fetch(`${url}/posts`, {
@@ -29,7 +29,7 @@ export const addNewPost=(post)=>{
     },
     body: JSON.stringify(post)
   })
-  .then(post => post.json());
+  .then(post => post.json())
 }
 
 export const fetchFilteredPosts=(cat)=>{
@@ -37,7 +37,7 @@ export const fetchFilteredPosts=(cat)=>{
     method: "GET",
     headers: myHeader
   })
-  .then(res=>res.json());
+  .then(res=>res.json())
 }
 
 export const fetchPost=(id)=>{
@@ -45,7 +45,7 @@ export const fetchPost=(id)=>{
     method:"GET",
     headers:myHeader
   })
-  .then(res=>res.json());
+  .then(res=>res.json())
 }
 
 export const fetchComments=(id)=>{
@@ -69,7 +69,7 @@ export const votePost=(id,upordown)=>{
     .then(res => res.json())
 }
 
-export const updatePost=(id,post)=>{
+export const editPost=(id,post)=>{
   return fetch(`${url}/posts/${id}`, {
     method: "PUT",
     headers: {
@@ -81,7 +81,7 @@ export const updatePost=(id,post)=>{
     .then(res=>res.json())
 }
 
-export const deletePost=(id)=>{
+export const removePost=(id)=>{
   return fetch(`${url}/posts/${id}`,{
     method:"DELETE",
     headers:myHeader

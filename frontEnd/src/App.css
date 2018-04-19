@@ -60,7 +60,7 @@ ul{
   margin:1% auto;
   border:1px rgba(82, 81, 81, 0.589) solid;
   border-radius: 5px;
-  padding:3% 0 0 0;
+  padding:2% 1% 0 1%;
   flex:1 100%;
 }
 
@@ -106,9 +106,14 @@ ul{
   color:rgba(70, 68, 68, 0.699);
 }
 
-.post{
+.title{
   font-size: 1em;
 }
+
+.body{
+  font-size: 0.9em;
+}
+
 .edit{
   text-align: left;
 }

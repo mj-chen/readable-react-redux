@@ -2,7 +2,7 @@ import React from "react"
 import FaEdit from "react-icons/lib/fa/edit"
 import PropTypes from "prop-types"
 
-const EditToggle=({onOpen})=> (
+const AddPost=({onOpen})=> (
         <FaEdit
             size={40}
             onClick={onOpen}
@@ -17,8 +17,8 @@ const EditToggle=({onOpen})=> (
         />
 )  
 
-EditToggle.propTypes={
+AddPost.propTypes={
     onOpen:PropTypes.func.isRequired
 }
 
-export default EditToggle
+export default AddPost
