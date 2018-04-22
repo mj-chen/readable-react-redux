@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import Modal from "react-responsive-modal"
 import { connect } from "react-redux"
 import { addNewPost } from "../actions"
-import UUID from "node-uuid"
+import UUID from "uuid"
 import PropTypes from "prop-types"
 
 class PostModal extends Component {

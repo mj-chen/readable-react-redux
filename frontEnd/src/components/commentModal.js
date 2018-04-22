@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import Modal from "react-responsive-modal"
-import UUID from "node-uuid"
+import UUID from "uuid"
 import PropTypes from "prop-types"
 
 class CommentModal extends Component {
