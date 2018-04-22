@@ -21,7 +21,8 @@ import CommentModal from "../components/commentModal"
 import PropTypes from "prop-types"
 import Loading from 'react-loading'
 import {fetchPost, fetchComments } from '../utils/api'
-import NotFound from '../assets/404.gif'
+import Redirect from 'react-router-dom/Redirect';
+
 
 class PostDetail extends Component {
 
@@ -116,9 +117,7 @@ class PostDetail extends Component {
         </article>
         ):(
           this.props.post.error || Object.keys(this.props.post).length === 0 ?
-            ( <article className="post_not_found">     
-                <img src={NotFound} alt='not found'/>
-              </article>):
+            (<Redirect to="/notfound"/> ):
             (  <article className="post_detail">
                   <header className="edit">
                     <Pen size={35} color="#35aa81" onClick={() => this.toggleEdit()} />
