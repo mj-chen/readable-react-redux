@@ -20,7 +20,7 @@ class Sort extends Component {
         const { lable, sortpostsbyvote, sortpostsbytime } = this.props
         const {sort} = this.state
         return(
-         <div id='toggle' style={{display:lable.indexOf('posts')===-1?'':'none'}}>
+         <div id='toggle'>
             <label className='toggleSort' onClick={this.toggleSort}>
               Sort By <FaAngleDoubleDown />
             </label>

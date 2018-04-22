@@ -41,12 +41,10 @@ ul{
   opacity: 0.8;
 }
 
-
 .selected{
   background-color: rgb(44, 168, 131);
   transform:scale(1.2);
 }
-
 
 .posts{
   text-align: center;
@@ -240,5 +238,12 @@ textarea {
 .add_comment:hover{
   opacity:0.8;
 }
+
+.post_not_found{
+  margin:15% auto;
+  padding-top: 5%;
+  text-align: center;
+}
+
 
 

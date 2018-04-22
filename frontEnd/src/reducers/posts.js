@@ -20,7 +20,6 @@ const posts = (state = [], action) => {
       return [...rest, ...posts]
     case SORT_POSTS:
       if(lable === ''){
-        console.log(lable)
         return [...state].sort(callback)
       }else{
         const targetList = state.filter(post=>post.category===lable)
