@@ -1,5 +1,8 @@
+### Summary 
+    - Created in April, this is my second React-Redux project
+    - The api-server directory is provided by Udacity 
 
-## Start Running the App
+### Start Running the App
 
 To get started running right away:
 
